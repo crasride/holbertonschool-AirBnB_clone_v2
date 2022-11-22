@@ -258,8 +258,6 @@ class HBNBCommand(cmd.Cmd):
         count = 0
         for k, v in storage._FileStorage__objects.items():
             if args == k.split('.')[0]:
-                count += 1
-        print(count)
 
     def help_count(self):
         """ """
@@ -352,6 +350,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
