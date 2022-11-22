@@ -122,18 +122,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        elif data_console [0] not in HBNBCommand.classes:
+        elif data_console[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         # Create a new instance
-        new_instance = HBNBCommand.classes[data_console [0]]()
+        new_instance = HBNBCommand.classes[data_console[0]]()
 
         # Use of the parameters
-        if len(data_console ) > 1:
-            instance = data_console [0] + "." + new_instance.id
+        if len(data_console) > 1:
+            instance = data_console[0] + "." + new_instance.id
 
-            for i in range(1, len(data_console )):
-                value_attr = data_console [i].split("=")
+            for i in range(1, len(data_console)):
+                value_attr = data_console[i].split("=")
 
                 if len(value_attr) < 2 or value_attr[1] == "":
                     print("** value missing **")
