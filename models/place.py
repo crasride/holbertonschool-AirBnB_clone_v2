@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel
 import models
@@ -37,3 +38,4 @@ class Place(BaseModel, Base):
     amenities = relationship("Amenity", secondary="place_amenity",
                              viewonly=False)
     amenity_ids = []
+    
