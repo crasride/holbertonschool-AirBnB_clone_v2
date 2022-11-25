@@ -39,15 +39,18 @@ class DBStorage():
         """
         Query all objects by class name and should return a dictionary
         """
-        new_dict = {}
-
-        if cls:
-            return self.get_data_from_table(cls, new_dict)
-
-        for i in list_classes:
-            new_dict = self.get_data_from_table(eval(i), new_dict)
-
-        return new_dict
+        if cls is None:
+            My_obj = self.__session.query(State).all()
+            My_obj.extend(self.__session.query(City).all())
+            My_obj.extend(self.__session.query(User).all())
+            My_obj.extend(self.__session.query(Place).all())
+            My_obj.extend(self.__session.query(Review).all())
+            My_obj.extend(self.__session.query(Amenity).all())
+        else:
+            if type(cls) == str:
+                cls = eval(cls)
+            My_obj = self.__session.query(cls)
+        return {"{}.{}".format(type(o).__name__, o.id): o for o in My_obj}
 
     def new(self, obj):
         """ add the object to the current database session """
@@ -59,7 +62,8 @@ class DBStorage():
 
     def delete(self, obj=None):
         """ delete from the current database session"""
-        self.__session.delete(obj)
+        if obj is not None:
+            self.__session.delete(obj)
 
     def reload(self):
         """
