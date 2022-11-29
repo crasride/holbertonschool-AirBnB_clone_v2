@@ -10,7 +10,6 @@ from models import storage
 from flask import render_template
 
 
-
 app = Flask(__name__)
 
 
